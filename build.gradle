@@ -16,7 +16,7 @@ allure {
         resultsDir.set(file("allure-results"))
         frameworks {
             junit5 {
-                adapterVersion.set("2.19.0") //версия интеграции фреймворка и Allure
+                adapterVersion.set("2.19.0")
             }
         }
     }
@@ -30,14 +30,6 @@ dependencies {
     )
 
 }
-
-//tasks.withType(JavaCompile) {
-//    options.encoding = 'UTF-8'
-//}
-
-//test {
- //   useJUnitPlatform()
-//}
 
 tasks.withType(Test) {
     useJUnitPlatform()
