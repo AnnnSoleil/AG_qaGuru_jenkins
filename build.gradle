@@ -14,10 +14,21 @@ dependencies {
 
 }
 
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
-}
+//tasks.withType(JavaCompile) {
+//    options.encoding = 'UTF-8'
+//}
 
 test {
     useJUnitPlatform()
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
 }
