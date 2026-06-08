@@ -6,6 +6,20 @@ repositories {
     mavenCentral()
 }
 
+allure {
+    report {
+        version.set("2.32.0")
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set("2.32.0")
+            }
+        }
+    }
+}
+
 dependencies {
     testImplementation (
             testImplementation("org.junit.jupiter:junit-jupiter:5.10.2"),
