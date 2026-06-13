@@ -57,7 +57,8 @@ public class RegistrationWithPageObjectTests extends TestBase {
                     .setFirstName("Alex")
                     .setLastName("Egorov")
                     .setGender("Other")
-                    .setUserNumber("1234567890");
+                    .setUserNumber("1234567890")
+                    .setEmail("alex111@egorov.com");
             $("#submit").click();
         });
 
