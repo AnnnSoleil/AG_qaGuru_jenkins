@@ -13,12 +13,13 @@ public class RegistrationTests {
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-//        Configuration.browser = "chrome";
-//        Configuration.browserVersion = "128.0";
-//        Configuration.browserVersion = "130.0";
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        String baseUrl = System.getProperty("BASE_URL", "https://demoqa.com");
+        String browser = System.getProperty("BROWSER", "chrome");
+        String browserSize = System.getProperty("BROWSER_SIZE", "1920x1080");
+
+        Configuration.baseUrl = baseUrl;
+        Configuration.browser = browser;
+        Configuration.browserSize = browserSize;
     }
 
     @Test

@@ -25,19 +25,32 @@ public class TestBase {
 
     @BeforeAll
     static void beforeAll() {
-        String base_test_Url = System.getProperty("baseUrl");
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
-//        Configuration.browser = "chrome";
-//        Configuration.browserVersion = "128.0";
-//        Configuration.browserVersion = "130.0";
+        String baseUrl = System.getProperty("BASE_URL", "https://demoqa.com");
+        String browser = System.getProperty("BROWSER", "chrome");
+        String browserVersion = System.getProperty("BROWSER_VERSION", "128.0");
+        String browserSize = System.getProperty("BROWSER_SIZE", "1920x1080");
+        String remoteUrl = System.getProperty("REMOTE_URL", "selenoid.autotests.cloud/wd/hub");
+        String remoteLogin = System.getProperty("REMOTE_LOGIN", "user1");
+        String remotePassword = System.getProperty("REMOTE_PASSWORD", "1234");
+
+
+        Configuration.baseUrl = baseUrl;
+        Configuration.browser = browser;
+        Configuration.browserVersion = browserVersion;
+        Configuration.browserSize = browserSize;
+        Configuration.browserVersion = browserVersion;
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
                 "enableVideo", true
         ));
         Configuration.browserCapabilities = capabilities;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = String.format(
+                "https://%s:%s@%s",
+                remoteLogin,
+                remotePassword,
+                remoteUrl
+        );
     }
     @AfterEach
     void addAttachments() {
