@@ -25,20 +25,10 @@ public class TestBase {
 
     @BeforeAll
     static void beforeAll() {
-        String baseUrl = System.getProperty("BASE_URL", "https://demoqa.com");
-        String browser = System.getProperty("BROWSER", "chrome");
-        String browserVersion = System.getProperty("BROWSER_VERSION", "128.0");
-        String browserSize = System.getProperty("BROWSER_SIZE", "1920x1080");
-        String remoteUrl = System.getProperty("REMOTE_URL", "selenoid.autotests.cloud/wd/hub");
-        String remoteLogin = System.getProperty("REMOTE_LOGIN", "user1");
-        String remotePassword = System.getProperty("REMOTE_PASSWORD", "1234");
-
-
-        Configuration.baseUrl = baseUrl;
-        Configuration.browser = browser;
-        Configuration.browserVersion = browserVersion;
-        Configuration.browserSize = browserSize;
-        Configuration.browserVersion = browserVersion;
+        Configuration.baseUrl = System.getProperty("BASE_URL", "https://demoqa.com");;
+        Configuration.browser = System.getProperty("BROWSER", "chrome");;
+        Configuration.browserVersion = System.getProperty("BROWSER_VERSION", "128.0");;
+        Configuration.browserSize = System.getProperty("BROWSER_SIZE", "1920x1080");;
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
                 "enableVNC", true,
@@ -47,9 +37,9 @@ public class TestBase {
         Configuration.browserCapabilities = capabilities;
         Configuration.remote = String.format(
                 "https://%s:%s@%s",
-                remoteLogin,
-                remotePassword,
-                remoteUrl
+                System.getProperty("REMOTE_LOGIN"),
+                System.getProperty("REMOTE_PASSWORD"),
+                System.getProperty("REMOTE_URL", "selenoid.autotests.cloud/wd/hub")
         );
     }
     @AfterEach
